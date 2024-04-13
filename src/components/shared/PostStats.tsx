@@ -1,4 +1,4 @@
-import { useAuthContext } from '@/context/AuthContext';
+
 import { useDeleteSavedPost, useGetCurrentUser, useLikePost, useSavePost } from '@/lib/react-query/queriesAndMutations';
 import { checkIsLiked } from '@/lib/utils';
 import { Models } from 'appwrite'
@@ -12,7 +12,7 @@ function PostStats({post,userId}:PostStatsProps) {
   const likesList = post?.likes.map((user:Models.Document)=>user.$id);
   const [likes,setLikes] = useState(likesList)
   const [isSaved,setIsSaved] = useState(false)
-  const [isLiked,setIsLiked] = useState(false);
+  
 
 //mutations
 const {mutate:likePost} = useLikePost()
@@ -30,11 +30,11 @@ const handleLikePost = (event:React.MouseEvent)=>{
     const hasLiked = newLikes.includes(userId)
     if(hasLiked){
        newLikes = newLikes.filter((id)=>id!==userId)
-       setIsLiked(false);
+     
     }
     else{
       newLikes.push(userId)
-      setIsLiked(true)
+      
     }
     setLikes(newLikes)
     likePost({postId:post?.$id || "",likesArray:newLikes})

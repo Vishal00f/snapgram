@@ -1,10 +1,10 @@
-import { Models } from 'appwrite';
-import React from 'react'
+
+
 import Loader from './Loader';
 import PostListGrid from './PostListGrid';
 type SearchResultsProps={
     isSearchFetching:boolean;
-    searchedPosts:Models.Document[]
+    searchedPosts:any
 }
 function SearchResults({isSearchFetching,searchedPosts}:SearchResultsProps) {
     if(isSearchFetching){

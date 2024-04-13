@@ -2,10 +2,10 @@ import Loader from '@/components/shared/Loader'
 import PostListGrid from '@/components/shared/PostListGrid'
 import { useGetCurrentUser } from '@/lib/react-query/queriesAndMutations'
 import { Models } from 'appwrite'
-import React from 'react'
+
 
 function Saved() {
-  const {data:currentUser,isPending:isLoadingUser} = useGetCurrentUser()
+  const {data:currentUser} = useGetCurrentUser()
  const savePosts= currentUser?.save.map((savedPost:Models.Document)=>({
     ...savedPost.post,
     creator:{

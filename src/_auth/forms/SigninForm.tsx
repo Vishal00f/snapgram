@@ -19,7 +19,7 @@ import {
 import { Input } from "@/components/ui/input"
 import Loader from "@/components/shared/Loader"
 import { Link, useNavigate } from "react-router-dom"
-import { useCreateUserAccount, useSignInAccount } from "@/lib/react-query/queriesAndMutations"
+import {  useSignInAccount } from "@/lib/react-query/queriesAndMutations"
 import { useAuthContext } from "@/context/AuthContext"
 
 
@@ -37,7 +37,7 @@ function SignupForm() {
     },
   })
   //destructoring values from auth context 
-  const {checkAuthUser,isLoading:isUserLoading}=useAuthContext()
+  const {checkAuthUser}=useAuthContext()
 
   const navigate = useNavigate()
   // 2. Define a submit handler.

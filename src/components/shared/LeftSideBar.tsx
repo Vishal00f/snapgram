@@ -2,7 +2,7 @@ import { Link, NavLink, useNavigate,useLocation } from "react-router-dom"
 import { useAuthContext } from "@/context/AuthContext"
 import { useEffect } from "react";
 import { sidebarLinks } from "@/constants";
-import { INavLink } from "@/types";
+
 import { Button } from "../ui/button";
 import { useSignOutAccount } from "@/lib/react-query/queriesAndMutations";
 function LeftSideBar() {

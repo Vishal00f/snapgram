@@ -11,11 +11,11 @@ import { Link, useNavigate, useParams } from 'react-router-dom'
 function PostDetails() {
   const { id } = useParams()
   const { data: post, isPending } = useGetPostById(id || "");
-  const {mutate:deletePost,isPending:isLoadingDelete} = useDeletePost()
+  const {mutate:deletePost} = useDeletePost()
   const navigate = useNavigate()
   const {user } = useAuthContext()
   const handleDeletePost = ()=>{
-    deletePost({postId:id,imageId:post?.imageId});
+    deletePost({postId:id || "",imageId:post?.imageId});
       navigate(-1)
   }
 

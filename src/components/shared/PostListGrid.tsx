@@ -1,11 +1,11 @@
 import { useAuthContext } from '@/context/AuthContext'
 import { Models } from 'appwrite'
-import React from 'react'
+
 import { Link } from 'react-router-dom'
 import PostStats from './PostStats'
 
 type PostListGridProps = {
-    posts:Models.Document[] ;
+    posts?:Models.Document[] | undefined ;
     showUser?:boolean;
     showStats?:boolean;
 }
@@ -14,7 +14,7 @@ function PostListGrid({posts,showUser= true,showStats= true}:PostListGridProps) 
      
   return (
     <ul className='grid-container'>
-        {posts.map((post)=>(
+        {posts?.map((post)=>(
             <li key={post.$id} className='relative min-w-80 h-80'>
                 <Link to={`/posts/${post.$id}`} className='grid-post_link'>
                     <img src={post.imageUrl} alt="post" className='h-full w-full object-cover'/>

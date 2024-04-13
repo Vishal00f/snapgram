@@ -19,7 +19,7 @@ import { useAuthContext } from "@/context/AuthContext"
 import { useNavigate } from "react-router-dom"
 import { useToast } from "../ui/use-toast"
 import { useCreatePost, useDeletePost, useUpdatePost } from "@/lib/react-query/queriesAndMutations"
-import Loader from "./Loader"
+
 
  
 const formSchema = z.object({
@@ -50,7 +50,7 @@ function PostForm({post,action}:PostFormProps) {
       //create post methods 
       const {mutateAsync:createPost,isPending:isLoadingCreate}= useCreatePost()
       const {mutateAsync:updatePost,isPending:isLoadingUpdate} = useUpdatePost()
-      const {mutateAsync:deletePost,isPending:isLoadingDelete} = useDeletePost()
+      const {isPending:isLoadingDelete} = useDeletePost()
       const {user} = useAuthContext()
       const navigate = useNavigate()
       // 2. Define a submit handler.
@@ -64,7 +64,7 @@ function PostForm({post,action}:PostFormProps) {
             imageId:post?.imageId,
             imageUrl:post?.imageUrl
           })
-          if(!updatePost) {
+          if(!updatedPost) {
              toast({title:'Please try again..'})
           }
           return navigate(`/posts/${post.$id}`)

@@ -1,6 +1,6 @@
 import { INewPost, INewUser, IUpdatePost } from "@/types";
 import { account, appwriteConfig, avatars, databases, storage } from "./config";
-import { ID, Models, Query } from "appwrite";
+import { ID , Query } from "appwrite";
 export async function createUserAccount(user: INewUser) {
     try {
       const newAccount = await account.create(
@@ -336,7 +336,7 @@ export async function deletePost(postId:string,imageId:string) {
       
     }
 }
-export async function getInfinitePosts({pageParam}:{pageParam:number}) {
+export async function getInfinitePosts({pageParam}:{pageParam:any}) {
   const queries:any[]=[Query.orderDesc('$updatedAt'),Query.limit(10)]
     if(pageParam){
       queries.push(Query.cursorAfter(pageParam.toString()));
