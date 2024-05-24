@@ -18,19 +18,19 @@ export const formatDate = (timestamp: string = ""): string => {
   const diffInHours: number = diffInMinutes / 60;
   const diffInDays: number = diffInHours / 24;
 
-  switch (true) {
-    case Math.floor(diffInDays) >= 30:
-      return formatDate(timestamp);
-    case Math.floor(diffInDays) === 1:
-      return `${Math.floor(diffInDays)} day ago`;
-    case Math.floor(diffInDays) > 1 && diffInDays < 30:
-      return `${Math.floor(diffInDays)} days ago`;
-    case Math.floor(diffInHours) >= 1:
-      return `${Math.floor(diffInHours)} hours ago`;
-    case Math.floor(diffInMinutes) >= 1:
-      return `${Math.floor(diffInMinutes)} minutes ago`;
-    default:
-      return "Just now";
+  if (Math.floor(diffInDays) >= 30) {
+    const options: Intl.DateTimeFormatOptions = { year: 'numeric', month: 'long', day: 'numeric' };
+    return date.toLocaleDateString(undefined, options);
+  } else if (Math.floor(diffInDays) === 1) {
+    return `${Math.floor(diffInDays)} day ago`;
+  } else if (Math.floor(diffInDays) > 1) {
+    return `${Math.floor(diffInDays)} days ago`;
+  } else if (Math.floor(diffInHours) >= 1) {
+    return `${Math.floor(diffInHours)} hours ago`;
+  } else if (Math.floor(diffInMinutes) >= 1) {
+    return `${Math.floor(diffInMinutes)} minutes ago`;
+  } else {
+    return "Just now";
   }
 };
 export const checkIsLiked = (likeList: string[], userId: string) => {
